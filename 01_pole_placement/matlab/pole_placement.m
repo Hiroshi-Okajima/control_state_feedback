@@ -20,9 +20,22 @@
 
 clear; close all; clc;
 
-%% --- Load common plot style ---
-addpath('../common/matlab');
-plot_style;
+%% --- Plot style (self-contained — no external dependency) ---
+colors.reference = [0.000 0.000 0.000];   % #000000  black
+colors.method1   = [0.122 0.467 0.706];   % #1f77b4  blue
+colors.method2   = [0.839 0.153 0.157];   % #d62728  red
+colors.method3   = [0.173 0.627 0.173];   % #2ca02c  green
+colors.method4   = [1.000 0.498 0.055];   % #ff7f0e  orange
+colors.control   = [0.580 0.404 0.741];   % #9467bd  purple
+colors.noise     = [0.498 0.498 0.498];   % #7f7f7f  gray
+colors.baseline  = [0.498 0.498 0.498];   % #7f7f7f  gray
+figsize.standard = [8, 5];    % 1200 x 750 px at 150 dpi
+figsize.wide     = [8, 6];    % 1200 x 900 px
+figsize.square   = [6, 6];    %  900 x 900 px
+lw.reference = 2.0;  lw.response = 1.5;  lw.baseline = 1.5;  lw.noise = 1.0;
+set(0, 'DefaultAxesFontSize', 13, 'DefaultAxesFontName', 'Times New Roman');
+set(0, 'DefaultTextFontSize', 13, 'DefaultTextFontName', 'Times New Roman');
+set(0, 'DefaultLegendFontSize', 12);
 
 %% =====================================================================
 %%  Plant definition
@@ -214,4 +227,10 @@ function [X, U] = sim_state_fb(A, B, K, x0, t)
         X(:,k+1) = xk + dt/6*(f1 + 2*f2 + 2*f3 + f4);
     end
     U(Nt) = -K * X(:,Nt);
+end
+
+function save_figure(fig, filepath)
+    exportgraphics(fig, filepath, 'Resolution', 150, ...
+                   'BackgroundColor', 'white');
+    fprintf('Saved: %s\n', filepath);
 end
