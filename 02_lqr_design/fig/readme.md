@@ -1,1 +1,5 @@
 
+lqr_design_R_comparison.png
+lqr_design_state_variables.png
+lqr_design_pole_map.png
+lqr_design_cost_tradeoff.png
