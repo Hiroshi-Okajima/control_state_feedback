@@ -1,4 +1,3 @@
-
 """
 pole_placement.py
 State Feedback Control: Pole Placement Simulation
@@ -21,20 +20,36 @@ Plant model (3rd-order controllable canonical form from the blog):
 """
 
 import os
-import sys
 import numpy as np
 from scipy.integrate import solve_ivp
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common', 'python'))
-from plot_style import apply_style, COLORS, save_fig, FIGSIZE_STANDARD, FIGSIZE_SQUARE
-
 import matplotlib.pyplot as plt
 import control as ct
 
 # ======================================================================
-#  Apply common plot style
+#  Plot style (self-contained — no external dependency)
 # ======================================================================
-apply_style()
+COLORS = {
+    'reference': '#000000', 'method1': '#1f77b4', 'method2': '#d62728',
+    'method3':   '#2ca02c', 'method4': '#ff7f0e', 'control': '#9467bd',
+    'noise':     '#7f7f7f', 'baseline': '#7f7f7f',
+}
+FIGSIZE_STANDARD = (8, 5)   # 1200 x 750 px at 150 dpi
+FIGSIZE_SQUARE   = (6, 6)   #  900 x 900 px at 150 dpi
+DPI = 150
+
+plt.rcParams.update({
+    'font.family': 'serif', 'font.size': 13,
+    'axes.labelsize': 14, 'legend.fontsize': 12,
+    'xtick.labelsize': 12, 'ytick.labelsize': 12,
+    'figure.dpi': DPI, 'savefig.dpi': DPI,
+    'savefig.facecolor': 'white', 'savefig.edgecolor': 'none',
+    'axes.grid': True, 'grid.alpha': 0.3,
+})
+
+def save_fig(fig, filepath):
+    fig.savefig(filepath, dpi=DPI, bbox_inches='tight',
+                facecolor='white', edgecolor='none')
+    print(f'Saved: {filepath}')
 
 # ======================================================================
 #  Plant definition
@@ -104,7 +119,7 @@ t4, X4, Y4, U4 = simulate(Acl4, K4, x0, Tsim)
 # ======================================================================
 #  Create output directory
 # ======================================================================
-fig_dir = os.path.join(os.path.dirname(__file__), 'fig')
+fig_dir = os.path.join(os.path.dirname(__file__), '..', 'fig')
 os.makedirs(fig_dir, exist_ok=True)
 
 # ======================================================================
