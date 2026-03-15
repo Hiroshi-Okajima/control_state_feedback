@@ -37,6 +37,9 @@ set(0, 'DefaultAxesFontSize', 13, 'DefaultAxesFontName', 'Times New Roman');
 set(0, 'DefaultTextFontSize', 13, 'DefaultTextFontName', 'Times New Roman');
 set(0, 'DefaultLegendFontSize', 12);
 
+%% --- Create output directory ---
+if ~exist('fig', 'dir'), mkdir('fig'); end
+
 %% =====================================================================
 %%  Plant definition
 %% =====================================================================
