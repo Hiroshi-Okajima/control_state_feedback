@@ -1,1 +1,5 @@
 
+observer_based_feedback_pole_map.png
+observer_based_feedback_estimation_error.png
+observer_based_feedback_state_estimation.png
+observer_based_feedback_output_comparison.png
