@@ -1,1 +1,5 @@
 3 figures
+
+pole_placement_imaginary_effect.png
+pole_placement_pole_map.png
+pole_placement_step_response.png
