@@ -1,1 +1,5 @@
-
+integral_servo_design_comparison.png
+integral_servo_step_comparison.png
+integral_servo_error_integrator.png
+integral_servo_pole_map.png
+integral_servo_disturbance_rejection.png
